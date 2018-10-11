@@ -11,4 +11,13 @@ describe('AuthController', () => {
       assert.equal(true, authController.isAuthorized(['user', 'admin'], 'admin'));
     });
   });
+
+  describe('isAuthorizedAsync', () => {
+    it('should return false if not authorized', (done) => {
+      authController.isAuthorizedAsync(['user'], 'admin', (isAuth) => {
+        assert.equal(false, isAuth);
+        done();
+      });
+    });
+  });
 });
