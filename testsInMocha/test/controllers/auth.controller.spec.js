@@ -4,7 +4,7 @@ const authController = require('../../controllers/auth.controller');
 
 describe('AuthController', function() {
   // set up for autonomous testing
-  beforeEach(function() {
+  beforeEach('this function is setting up Roles', function settingUpRoles() {
     console.log('Running before each');
     authController.setRoles(['user']);
   });
