@@ -6,7 +6,7 @@ const AuthController = () => {
   function isAuthorizedAsync(roles, neededRole, cb) {
     setTimeout(() => {
       cb(roles.indexOf(neededRole) >= 0);
-    }, 0);
+    }, 2100);
   }
 
   return { isAuthorized, isAuthorizedAsync };

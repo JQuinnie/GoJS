@@ -8,13 +8,17 @@ describe('AuthController', () => {
       assert.equal(false, authController.isAuthorized(['user'], 'admin'));
     });
     it('should return true if authorized', () => {
-      assert.equal(true, authController.isAuthorized(['user', 'admin'], 'admin'));
+      assert.equal(
+        true,
+        authController.isAuthorized(['user', 'admin'], 'admin')
+      );
     });
   });
 
   describe('isAuthorizedAsync', () => {
-    it('should return false if not authorized', (done) => {
-      authController.isAuthorizedAsync(['user'], 'admin', (isAuth) => {
+    it('should return false if not authorized', function(done) {
+      this.timeout(2500);
+      authController.isAuthorizedAsync(['user'], 'admin', isAuth => {
         assert.equal(false, isAuth);
         done();
       });
