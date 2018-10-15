@@ -1,23 +1,31 @@
 const AuthController = () => {
   let roles;
+  let user;
 
   function setRoles(role) {
     roles = role;
+    user.roles = role;
+  }
+
+  function setUser(inUser) {
+    user = inUser;
   }
 
   function isAuthorized(neededRole) {
-    return roles.indexOf(neededRole) >= 0;
+    if (user) {
+      return user.isAuthorized(neededRole);
+    }
   }
 
   function isAuthorizedAsync(neededRole, cb) {
-    setTimeout(() => {
+    setTimeout(function() {
       cb(roles.indexOf(neededRole) >= 0);
     }, 0);
   }
 
   function isAuthorizedPromise(neededRole, cb) {
     return new Promise(function(resolve) {
-      setTimeout(() => {
+      setTimeout(function() {
         resolve(roles.indexOf(neededRole) >= 0);
       }, 0);
     });
@@ -32,6 +40,7 @@ const AuthController = () => {
     isAuthorized,
     isAuthorizedAsync,
     setRoles,
+    setUser,
     isAuthorizedPromise,
     getIndex
   };

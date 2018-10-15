@@ -13,12 +13,27 @@ describe('AuthController', function() {
   // set up for autonomous testing
   beforeEach('this function is setting up Roles', function settingUpRoles() {
     console.log('Running before each');
-    authController.setRoles(['user']);
+    // authController.setRoles(['user']);
   });
 
   describe('isAuthorized', function() {
+    let user = {};
+
+    beforeEach(function() {
+      user = {
+        roles: ['user'],
+        isAuthorized: function(neededRole) {
+          return this.roles.indexOf(neededRole) >= 0;
+        }
+      };
+      // let us watch a different function
+      sinon.spy(user, 'isAuthorized');
+      authController.setUser(user);
+    });
+
     it('should return false if not authorized', function() {
       let isAuth = authController.isAuthorized('admin');
+      user.isAuthorized.calledOnce.should.be.true;
       expect(isAuth).to.be.false;
     });
     it('should return true if authorized', function() {
