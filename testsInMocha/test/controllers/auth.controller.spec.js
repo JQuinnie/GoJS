@@ -70,9 +70,6 @@ describe('AuthController', function() {
           return this.roles.indexOf(neededRole) >= 0;
         }
       };
-      // // let us watch a different function
-      // sinon.spy(user, 'isAuthorized');
-      // authController.setUser(user);
     });
 
     it('should render index if authorized', function() {
@@ -80,13 +77,19 @@ describe('AuthController', function() {
       let isAuth = sinon.stub(user, 'isAuthorized').returns(true);
       let req = { user: user };
       let res = {
-        // fake function with spys
-        render: sinon.spy()
+        render: function() {}
       };
+
+      // use mocks to clean up criteria with verify()
+      let mock = sinon.mock(res);
+      mock
+        .expects('render')
+        .once()
+        .withExactArgs('index');
+
       authController.getIndex(req, res);
       isAuth.calledOnce.should.be.true;
-      res.render.calledOnce.should.be.true;
-      res.render.firstCall.args[0].should.equal('index');
+      mock.verify();
     });
   });
 });
