@@ -1,4 +1,10 @@
 const assert = require('assert');
+const expect = require('chai').expect;
+const should = require('chai').should();
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised); // middleware
+chai.should(); // append it onto the end
 
 const authController = require('../../controllers/auth.controller');
 
@@ -11,11 +17,13 @@ describe('AuthController', function() {
 
   describe('isAuthorized', function() {
     it('should return false if not authorized', function() {
-      assert.equal(false, authController.isAuthorized('admin'));
+      let isAuth = authController.isAuthorized('admin');
+      expect(isAuth).to.be.false;
     });
     it('should return true if authorized', function() {
       authController.setRoles(['user', 'admin']);
-      assert.equal(true, authController.isAuthorized('admin'));
+      let isAuth = authController.isAuthorized('admin');
+      isAuth.should.be.true;
     });
     it('should not allow a GET if not authorized');
     it('should allow GET if authorized');
@@ -27,6 +35,13 @@ describe('AuthController', function() {
         assert.equal(false, isAuth);
         done();
       });
+    });
+  });
+
+  describe('isAuthorizedPromise', function() {
+    it('should return false if not authorized', function() {
+      return authController.isAuthorizedPromise('admin').should.eventually.be
+        .false;
     });
   });
 });
