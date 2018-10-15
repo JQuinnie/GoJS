@@ -15,7 +15,15 @@ const AuthController = () => {
     }, 0);
   }
 
-  return { isAuthorized, isAuthorizedAsync, setRoles };
+  function isAuthorizedPromise(neededRole, cb) {
+    return new Promise(function(resolve) {
+      setTimeout(() => {
+        resolve(roles.indexOf(neededRole) >= 0);
+      }, 0);
+    });
+  }
+
+  return { isAuthorized, isAuthorizedAsync, setRoles, isAuthorizedPromise };
 };
 
 module.exports = AuthController();
