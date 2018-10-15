@@ -3,6 +3,7 @@ const expect = require('chai').expect;
 const should = require('chai').should();
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+const sinon = require('sinon');
 chai.use(chaiAsPromised); // middleware
 chai.should(); // append it onto the end
 
@@ -42,6 +43,19 @@ describe('AuthController', function() {
     it('should return false if not authorized', function() {
       return authController.isAuthorizedPromise('admin').should.eventually.be
         .false;
+    });
+  });
+
+  describe('getIndex', function() {
+    it('should render index', function() {
+      let req = {};
+      let res = {
+        // fake function with spys
+        render: sinon.spy()
+      };
+      authController.getIndex(req, res);
+      res.render.calledOnce.should.be.true;
+      res.render.firstCall.args[0].should.equal('index');
     });
   });
 });
