@@ -3,5 +3,11 @@
   "env": {
     "node": true,
     "mocha": true
+  },
+  "plugins": ["mocha"],
+  "rules": {
+    "mocha/no-exclusive-tests": "error",
+    "prefer-arrow-callback": 0,
+    "mocha/prefer-arrow-callback": 2
   }
 }
