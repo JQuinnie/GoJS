@@ -43,7 +43,7 @@ function doWhenDataReceived(value) {
 }
 
 function* createFlow() {
-  const data = yield fetch('http://twitter.com/will/tweets/1');
+  const data = yield fetch('https://www.anapioficeandfire.com/api/houses/378');
   console.log(data);
 }
 
