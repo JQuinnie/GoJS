@@ -1,5 +1,5 @@
 require('es6-promise').polyfill();
-require('isomorphic-fetch');
+const fetch = require('isomorphic-fetch');
 
 async function createFlow() {
   console.log('Me first');
