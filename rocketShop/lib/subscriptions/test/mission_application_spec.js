@@ -23,6 +23,13 @@ describe('Memberhsip application requirements', function() {
   });
 
   describe('Application invalid if...', function() {
+    it('is expired', function() {
+      const app = new MembershipApplication({
+        validUntil: Date.parse('01/01/2010')
+      });
+      assert(app.expired());
+    });
+
     it('email is 4 characters or less', function() {
       const app = new MembershipApplication({ email: 'dd' });
       assert(!app.emailIsValid());
