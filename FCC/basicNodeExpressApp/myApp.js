@@ -5,6 +5,10 @@ const express = require('express');
 const app = express();
 
 // --> 7)  Mount the Logger middleware here
+// app.use(middleware function(){
+//   next();
+// });
+
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
@@ -45,7 +49,12 @@ app.get('/json', (req, res) => {
 
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
-
+// app.get('/user', function(req, res, next) {
+//   req.user = getTheUserSync(); // Hypothetical synchronous operation
+//   next();
+//   }, function(req, res) {
+//   res.send(req.user);
+//   })
 
 /** 8) Chaining middleware. A Time server */
 app.get('/now', (req, res, next) => {
@@ -68,7 +77,14 @@ app.get('/name', (req, res) => {
 
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
+// To parse the data coming from POST requests, you have to install a package: the body-parser. This package allows you to use a series of middleware, which can decode data in different formats.
+// To handle HTTP POST request in Express.js version 4 and above, you need to install middleware module called body-parser.
 
+// body-parser extract the entire body portion of an incoming request stream and exposes it on req.body.
+
+// The middleware was a part of Express.js earlier but now you have to install it separately.
+
+// This body-parser module parses the JSON, buffer, string and URL encoded data submitted using HTTP POST request. Install body-parser using NPM as shown below.
 
 /** 12) Get data form POST  */
 app.post('/name', (req, res) => {
