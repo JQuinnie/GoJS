@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^3.0.1",
     "chance": "^1.0.18",
     "lodash": "^4.17.11"
   }
