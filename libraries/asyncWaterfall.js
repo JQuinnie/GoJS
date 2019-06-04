@@ -6,6 +6,7 @@ const octokit = new Octokit({
   baseUrl: 'https://api.github.com',
 });
 
+// do multiple things in order
 async.waterfall([
   // first function will get the url from github
   async function getUserAvatar(callback) {
