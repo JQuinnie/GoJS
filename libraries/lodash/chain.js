@@ -38,3 +38,12 @@ const chainUsers = _.chain(users)
   .value();
 
 console.log(chainUsers);
+
+// getting parts of the array, does not mutate the existing array and will work for strings
+
+const arr = [1, 2, 3];
+
+console.log(`HEAD: ${_.head(arr)}`); // 1
+console.log(`Everything but HEAD: ${_.tail(arr)}`); // 2, 3
+console.log(`LAST: ${_.last(arr)}`); // 3
+console.log(`Everything but LAST: ${_.initial(arr)}`); // 1, 2
