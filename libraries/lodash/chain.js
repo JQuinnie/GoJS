@@ -47,3 +47,9 @@ console.log(`HEAD: ${_.head(arr)}`); // 1
 console.log(`Everything but HEAD: ${_.tail(arr)}`); // 2, 3
 console.log(`LAST: ${_.last(arr)}`); // 3
 console.log(`Everything but LAST: ${_.initial(arr)}`); // 1, 2
+
+// converting string
+const toSlug = str => _.chain(str).toLower().split(' ').join('-')
+  .value();
+const slug = toSlug('This is a super quiz');
+console.log(slug);
