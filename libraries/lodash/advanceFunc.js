@@ -1,7 +1,6 @@
 const _ = require('lodash');
 
 // random
-
 // native basic
 console.log(Math.random());
 
@@ -14,3 +13,8 @@ console.log(`Random: ${random(1, 100)}`);
 // lodash
 console.log(`Lodash: ${_.random(1, 100)}`); // first arg can be omitted if starting from 0
 console.log(`Lodash w float point: ${_.random(1, 100, true)}`);
+
+
+// unique id
+// can have a prefix
+console.log(`ID: ${_.uniqueId('id-')}`);
