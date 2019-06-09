@@ -18,3 +18,14 @@ console.log(`Lodash w float point: ${_.random(1, 100, true)}`);
 // unique id
 // can have a prefix
 console.log(`ID: ${_.uniqueId('id-')}`);
+
+
+// flatten
+const numbers = [[1, 2], [3, 4]];
+
+const concat = [].concat.apply([], numbers);
+console.log(`Concat: ${concat}`);
+
+const flatten = _.flatten(numbers);
+console.log(`Flatten: ${flatten}`);
+console.log(typeof (flatten));
