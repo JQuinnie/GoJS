@@ -29,3 +29,10 @@ console.log(`Concat: ${concat}`);
 const flatten = _.flatten(numbers);
 console.log(`Flatten: ${flatten}`);
 console.log(typeof (flatten));
+
+
+// compact removes all falsy values and empty strings
+const mixArr = [1, 2, null, 3, undefined, 0, false, 4, ''];
+// log just the non boolean, or the items that are true, the below cannot be used inside lodash chain
+console.log((mixArr.filter(Boolean)));
+console.log(`Compact: ${_.compact(mixArr)}`);
