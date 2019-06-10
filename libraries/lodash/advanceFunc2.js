@@ -58,3 +58,19 @@ const b = _.cloneDeep(a);
 b.b.foo = 'bar';
 console.log(a);
 console.log(b);
+
+
+// mixin, custom functions that can be chained
+
+function capitalizeLast(str) {
+  const lastSymbol = _.last(str);
+  const initialSymbols = _.chain(str).initial().join('');
+
+  return initialSymbols + _.capitalize(lastSymbol);
+}
+
+_.mixin({ capitalizeLast });
+// { capitalize: capitalize} --> name, function
+
+const mixin = _.chain('foo').capitalizeLast().value(); // a function like this
+console.log(`Mixin: ${mixin}`);
