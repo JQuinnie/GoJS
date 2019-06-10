@@ -49,3 +49,12 @@ describe('GitService', () => {
     http.request.restore();
   });
 });
+
+describe.only('GitService', () => {
+  describe('GetUser', () => {
+    it('should return user and repos', () => gitService.getUser('JQuinnie').then((user) => {
+      user.login.should.equal('JQuinnie');
+      user.should.have.property('repos');
+    }));
+  });
+});
