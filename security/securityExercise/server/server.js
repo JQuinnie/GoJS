@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const winston = require('winston');
@@ -9,8 +10,9 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
+app.use(express.static('../client'));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.sendFile(path.resolve('index.html')));
 
 app.post('/secret', (req, res) => {
   const { userInput } = req.body;
