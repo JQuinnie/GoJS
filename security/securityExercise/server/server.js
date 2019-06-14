@@ -12,7 +12,12 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(express.static('../client'));
 
-app.get('/', (req, res) => res.sendFile(path.resolve('index.html')));
+app.get('/', (req, res) => {
+  res.set({
+    'Content-Security-Policy': "script-src 'self'",
+  });
+  res.sendFile(path.resolve('index.html'));
+});
 
 app.post('/secret', (req, res) => {
   const { userInput } = req.body;
