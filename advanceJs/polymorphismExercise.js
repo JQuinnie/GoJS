@@ -10,6 +10,18 @@ class Character {
 }
 // Polymorphism--
 // Extend the Character class to have a Queen class. The output of the below code should be:
+class Queen extends Character {
+  constructor(name, weapon, type) {
+    super(name, weapon);
+    this.type = type;
+  }
+
+  attack(type) {
+    console.log(super.attack());
+    return `I am the ${this.name} of ${this.type}, now bow down to me!`;
+  }
+}
+
 const victoria = new Queen('Victoria', 'army', 'hearts'); // create a new instance with the queen having (name, weapon, type). Type inlcudes: 'hearts', 'clubs', 'spades', 'diamonds'
 
 victoria.attack(); // will console.log the attack() method in Character class AND will return another string: 'I am the Victoria of hearts, now bow down to me! '
